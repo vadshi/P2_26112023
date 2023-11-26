@@ -71,3 +71,8 @@ print(point2.z)  # Out: 12
 print(point3.z)  # Out: 12
 print(point4.z)  # Out: 12
 print(point5.z)  # Out: 12
+
+print(point1.y)
+del point1.y
+# print(point1.y)  # Error
+# del point1.w     # Error
