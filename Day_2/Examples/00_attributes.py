@@ -24,31 +24,31 @@ class People:
 # print(People is P1)
 # print(p)  # repr(p)
 # print(f'{hex(id(p)).upper(): >45}')
-# #
-# # # ==========================================
-# # #   Объект живет, пока есть ссылка на него
-# # # ==========================================
+#
+# # ==========================================
+# #   Объект живет, пока есть ссылка на него
+# # ==========================================
 # del People
 # # p3 = p()  # error
-# doubt_p = P1()  #
+# doubt_p = P1()  # Вспомнить и проверить
 # print(doubt_p)
 # print(P1.__name__)
 # # p2 = People()  # Out: NameError: name 'People' is not defined
 # del P1
-# print(p.name)   # Work(0) vs Error(0)
-# #
-# # # Получаем словарь объекта
+# print(p.name)   # Вспомнить и проверить
+#
+# # Получаем словарь объекта
 # print(vars(p))
-# # # Создаем снова имя(ссылку) People
+# # Создаем снова имя(ссылку) People
 # People = type(p)
 #
-# # print(id(People))
-# # p9 = People()
-# # print(type(p9))
-# # pprint(vars(People))
-# # # # # ======================================
-# #
-# # # ## class People, создаю новый экземпляр
+# print(id(People))
+# p9 = People()
+# print(type(p9))
+# pprint(vars(People))
+# # ======================================
+#
+# # class People, создаю новый экземпляр
 # print(type(p))
 # print(id(p))
 # new_p = type(p)()  # new_p = People()
@@ -65,17 +65,25 @@ class People:
 # p2 = p.__class__()  # p2 = People()
 # print(type(p2), p2)
 # print('=' * 40)
-#
-# # Получаю доступ к классу экземпляра
-# # и затем к имени класса
+# print(id(People))
+# print(id(p.__class__))
+# P3 = p2  # это ссылка на экземпляр
+# print(P3 is p2)
+# print(P3 is p2.__class__)
+
+# Получаю доступ к классу экземпляра
+# и затем к имени класса
 # p = People()
 # print(p.__class__.__name__)  # Out: People
+# print(vars(p))
+# # del p.name  # work
+# del p.__class__.name  # error
 # print(p.name)  # Out: Teachers
 # p.__class__.__name__ = "Person"
 # print(p.__class__.__name__)
 # print(People.__name__)
 #
-# # # # Но здесь ошибка!
+# # Но здесь ошибка!
 # # print(p.__name__)  # AttributeError
 # print(type(People))  # <class 'type'>
 # p4 = People()
@@ -102,7 +110,6 @@ class People:
 # print(vars(p).get('name'))  # None
 # print(vars(p).get('count'))  # 30
 #
-#
 # # # Проверка наличия атрибута у экземпляра
 # print(hasattr(p, 'name'))  # p.name
 #
@@ -116,58 +123,63 @@ class People:
 # p.name = 'Students'
 # p.age = 22
 # pprint(p.__dict__)
-# #
+#
 # # функция vars покажет словарь атрибутов объекта
 # print(vars(p))
 # pprint(vars(People))
 
-# p = People()
-# p.__class__.name = 'SName'  # People.name = 'SName'
-# # pprint(People.__dict__)
+# Меняем значение атрибута класса через экземпляр
+p = People()
+p.__class__.name = 'SName'  # People.name = 'SName'
+# pprint(People.__dict__)
 # print(p.__dict__)
-# #
-# # # Функции getattr, setattr, delattr, hasattr
-# # # название класса, имя атрибута,
-# #
-# print(getattr(People, 'name'))  # Out: People.name -> SName
-# # # Вернет третий аргумент, если атрибута нет
+
+# ==========================================
+# Функции getattr, setattr, delattr, hasattr
+# ==========================================
+# value = 'name'
+# # имя объекта, имя атрибута,
+# print(getattr(People, value))  # Out: People.name -> SName
+#
+# # Вернет третий аргумент, если атрибута нет
 # print(getattr(People, 'name2', 'Такого нет'))
 # # print(People.name2)   # AttributeError
-# #
-# # # название класса, имя атрибута, значение атрибута
+#
+# # Шаблон вызова: название класса, имя атрибута, значение атрибута
 # field_name = 'course'
 # setattr(People, field_name, 'Python')  # People.course = 'Python'
 # pprint(People.__dict__)
-
-
-# Пример использования функции setattr
+#
+#
+# # Пример использования функции setattr
 # from string import ascii_letters as chars
 # from random import choice
 # new_field = choice(chars)
 # print(f'{new_field = }')
 # setattr(People, new_field, 1)
 # pprint(vars(People))
-
-
-# ## Удаляем атрибут
+# print(getattr(p, new_field))
+#
+# # ## Удаляем атрибут
 # delattr(People, 'course')
 # pprint(People.__dict__)
+
+
 # p.age = 22
 # pprint(vars(p))
-# #
-# # # проверка наличия атрибута у объекта(класс,экземпляр)
+# # проверка наличия атрибута у объекта(класс, экземпляр)
 # print(hasattr(People, 'age'), hasattr(People, 'name'))
 # print(hasattr(p, "name"), hasattr(p, 'age'))
 # print(p.name)
-
-
-# Проверка понимания
+#
+#
+# # Проверка понимания
 # People.some = 567
-# # Это не проверка словаря
+# # Это не только проверка словаря экземпляра, но и класса
 # print(hasattr(p, 'some'))  # Вспомнить и проверить
 # print(p.some)
-# print(vars(p))
-# print(getattr(p, 'some'))  # 
+# print(vars(p).get("some"))
+# print(getattr(p, 'some'))  #
 
 # =============
 # Методы класса
@@ -185,8 +197,8 @@ class People:
 #
 #     def hello2():
 #         print('Hello, Student')
-
-
+#
+#
 # print(f'{id(Student) = }')
 # print(Student.hello1)
 # print(id(Student.hello1))
@@ -197,19 +209,19 @@ class People:
 #
 # # Работаем через класс
 # sb.hello1()  # Student.hello1(sb)
-# print(sb.name)
-# Student.hello1(sb)  # sb.hello1()
-# print(sb.name)
+# # print(sb.name)
+# # Student.hello1(sb)  # sb.hello1()
+# # print(sb.name)
 #
-# ## Два одинаковых вызова
+# # ## Два одинаковых вызова
 # sb.hello3()
 # Student.hello3(sb)  # sb.hello3()
 #
-# # # Важный момент с hello2()
+# # Важный момент с hello2()
 # Student.hello2()      # Отработает
-# sb.hello2()         # TypeError
-# Student.hello2(sb)  # TypeError
-#
+# # sb.hello2()         # TypeError
+# # Student.hello2(sb)  # TypeError
+# #
 # print(sb.__dict__)
 # print(sb.hello1.__self__)
 # print(hex(id(sb)).upper())
@@ -218,4 +230,5 @@ class People:
 # print(hex(id(sb)))
 # print(sb.hello1.__func__)
 # print(type(sb.hello1))
+# print(type(sb.name))
 
