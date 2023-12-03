@@ -93,32 +93,32 @@ import pprint as pp
 # B.say()  # AttributeError
 
 # Так можно, но не нужно
-class Person:
-    def __init__(some, name):
-        some.name = name
-        print(id(some))
-
-    def add(self, s: str):
-        self.name += s
-        print(f'{self.name = }')
-        print(id(self))
-        result = self.third()
-        print(f'{result = }')
-
-    def second(abcd):
-        abcd.name += ' work'
-        print(f'{abcd.name = }')
-        print(id(abcd))
-
-    def third(work):
-        print(id(work))
-        return work.name[:3]
-
-
-p = Person('Петр')
-print(id(p))
-print('Before:', p.name)
-p.add('!!!')  # Person.add(p)  s = '!!!'
-print('After:', p.name)
-p.second()   # Person.second(p)
+# class Person:
+#     def __init__(some, name):
+#         some.name = name
+#         print(id(some))
+#
+#     def add(self, s: str):
+#         self.name += s
+#         print(f'{self.name = }')
+#         print(id(self))
+#         result = self.third()
+#         print(f'{result = }')
+#
+#     def second(abcd):
+#         abcd.name += ' work'
+#         print(f'{abcd.name = }')
+#         print(id(abcd))
+#
+#     def third(work):
+#         print(id(work))
+#         return work.name[:3]
+#
+#
+# p = Person('Петр')
+# print(id(p))
+# print('Before:', p.name)
+# p.add('!!!')  # Person.add(p)  s = '!!!'
+# print('After:', p.name)
+# p.second()   # Person.second(p)
 
