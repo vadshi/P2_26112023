@@ -1,6 +1,7 @@
 import pprint as pp
 
-# Создаем класс
+
+# # Создаем класс
 # class MyClass:
 #     def __init__(self, n):
 #         self.name = n
@@ -19,10 +20,10 @@ import pprint as pp
 # # Создаем функцию с аргументом
 # def hi(some_obj):
 #     print(some_obj.name, ":hi")
-
-
-# Ошибка, потому что у строки нет атрибута name
-# hello('value')
+#
+#
+# # Ошибка, потому что у строки нет атрибута name
+# # hello('value')
 #
 # # Здесь ошибки не будет
 # hello(A)
@@ -33,61 +34,62 @@ import pprint as pp
 # # pp.pprint(MyClass.__dict__)
 #
 # # Вызываем метод экземпляра
-# A.say()
-# #
+# A.say()  # 43
+#
 # # Вызываем метод экземпляра
-# B.say()
-# #
+# B.say()  # 44
+#
 # # # Вызываем функцию класса
 # MyClass.say(A)  # A.say()
+# hello(A)
 # MyClass.say(B)  # B.say()
 #
-# # # Меняем ссылку на функцию
+# # Меняем ссылку на функцию
 # MyClass.say = hi
 #
-# # # Вызываем метод экземпляра
+# # Вызываем метод экземпляра
 # A.say()
 # print(type(A.say))
 # print(A.say)
-# #
-# # # # Вызываем метод экземпляра
+#
+# # Вызываем метод экземпляра
 # B.say()
 #
-# # # Вызываем функцию класса
+# # Вызываем функцию класса
 # MyClass.say(A)
 # MyClass.say(B)
 #
 # print('Before:', vars(A))   # Out V1: {'name': 'A'}
-#
-# # # Теперь мы создаем атрибут у экземпляра
+
+# # Теперь мы создаем атрибут у экземпляра
 # A.say = hello
 # print('After:', vars(A))
 #
-# # # Обязательно передаем аргумент, потому что
-# # # работа идет не через класс МуClass
+# # Обязательно передаем аргумент, потому что
+# # работа идет не через класс МуClass
 # A.say(A)
 # # A.say()  # Error
 # B.say()  # MyClass.say(B)
 # pp.pprint(MyClass.__dict__)
 # pp.pprint(A.__dict__)
 # pp.pprint(B.__dict__)
-# #
-# # # Здесь класс MyClass не используем
+#
+# # Здесь класс MyClass не используем
 # A.say(B)   # Out: B - hello
 #
 # # А здесь класс MyClass используем
 # # B.say(A)   # Out: Error
-# #
-# # # # Удаляем функцию класса
+#
+# # Удаляем функцию класса
 # del MyClass.say
 # print("After del:")
 # print(vars(A))
 # print(vars(B))
 # pp.pprint(vars(MyClass))
-# #
-# # # Вызываем функцию экземпляра
+#
+# # Вызываем функцию экземпляра
 # A.say(A)
-# # # Здесь будет ошибка
+# # Здесь будет ошибка
 # B.say()  # AttributeError
 
 # Так можно, но не нужно
