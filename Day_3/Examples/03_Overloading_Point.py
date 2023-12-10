@@ -20,7 +20,7 @@ class Point(object):
     # Перегрузка(Переопределение) оператора == (equal)
     def __eq__(self, other: Point):
         # мы будем выполнять оператор == только для точки
-        if type(other) == Point:
+        if type(other) is Point:
             return self.x == other.x and self.y == other.y
         else:
             # мы самостоятельно вызываем ошибку TypeError
@@ -62,13 +62,13 @@ def main():
 
     # print('p0 == p1:', p0 == p1)  # True
     # print('the same:', p0.__eq__(p1))
-    # Если True -> выполнять код дальше
-    # Если False -> ошибка AssertionError
-    # Смысл assert
-    # if p0 == p1:
-    #     pass
-    # else:
-    #     raise AssertionError
+    # # Если True -> выполнять код дальше
+    # # Если False -> ошибка AssertionError
+    # # Смысл assert
+    # # if p0 == p1:
+    # #     pass
+    # # else:
+    # #     raise AssertionError
     # assert p0 == p1, 'p0, на самом деле, равно p1'  # True, идем дальше по коду
     # print('p1 == p2:', p1 == p2)  # False
     # assert not p1 == p2
@@ -118,27 +118,28 @@ def main():
     # pprint(p1.__class__.__dict__)
     # pprint(Point.__dict__)
 
-    # error block
+    # # error block
     # beg = Begemot()
     # print(f'{beg.x = }, {beg.y = }')
-    # print(p0 == beg)   # p0.__eq__(beg) Out: TypeError
-    # print(p0 != beg)   # Out: TypeError
-
-    # Механизм работы: beg.__gt__(p0) -> p0.__lt__(beg)
-    # print(beg > p0)  # True
-    # print(type(beg))
-    # print(type(p0))
-    # print(p0.__lt__(beg))  # True
-    # print(beg.__gt__(p0))  # NotImplemented
-
-    # beg1 = Begemot()
-    # print(beg1 == p0)  # p0.__eq__(beg) Error
+    # # print(p0 == beg)   # p0.__eq__(beg) Out: TypeError
+    # # print(p0 != beg)   # Out: TypeError
     #
-    # True if x is y else NotImplemented
-    # Результат вызова метода __eq__() NotImplemented,
-    # # потому что мы его не переопределили и id(beg) != id(beg1)
+    # # Механизм работы: beg.__gt__(p0) -> p0.__lt__(beg)
+    # print(beg > p0)  # True
+    # # print(type(beg))
+    # # print(type(p0))
+    # print(beg.__gt__(p0))  # NotImplemented
+    # print(p0.__lt__(beg))  # True
+    #
+    # beg1 = Begemot()
+    # # print(beg1 == p0)  # p0.__eq__(beg) Error
+    #
+    # # True if x is y else NotImplemented
+    # # Результат вызова метода __eq__() NotImplemented,
+    # # # потому что мы его не переопределили и id(beg) != id(beg1)
     # print(beg.__eq__(beg1))  # NotImplemented
     # print(beg is beg)  # id(beg) == id(beg)
+    # print(beg is beg1)
 
 
 if __name__ == '__main__':
