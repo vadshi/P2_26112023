@@ -49,31 +49,31 @@ class Point(object):
 # print(len(i1))  # AttributeError: 'int' object has no attribute '__len__'
 
 # Создали два экземпяра
-# p1 = Point(3, 3)
-# p2 = Point(4, 4)
+p1 = Point(3, 3)
+p2 = Point(4, 4)
 
-# # Явно вызываем метод to_str()
-# print('Вызов явного метода')
-# print(p1.to_str())
-# print(p2.to_str())
-# print('Вызов неявных методов')
-# print(p1)
-# print(p2)
+# Явно вызываем метод to_str()
+print('Вызов явного метода')
+print(p1.to_str())
+print(p2.to_str())
+print('Вызов неявных методов')
+print(p1)
+print(p2)
 
 # Неявно вызываем магические методы __repr__ и __str__
 # print сначала ищет __str__(),
 # если не находит то использует __repr__()
-# print(str(p1))  # str(p1) -> p1.__str__()
-# print(repr(p2))  # repr(p1) -> p2.__repr__()
-#
-# print('=' * 40)
-#
-# # Четыре вызова с одинаковым функционалом
-# print(p2)
-# print(str(p2))
-# print(p2.__str__())  # print(str(p2))
-# print(Point.__str__(p2))
-#
+print(str(p1))  # str(p1) -> p1.__str__()
+print(repr(p2))  # repr(p1) -> p2.__repr__()
+
+print('=' * 40)
+
+# Четыре вызова с одинаковым функционалом
+print(p2)
+print(str(p2))
+print(p2.__str__())  # print(str(p2))
+print(Point.__str__(p2))
+
 # point_as_string = str(p1)
 # print(f'{point_as_string = }')
 #
@@ -82,7 +82,7 @@ class Point(object):
 # print(repr(p1))
 #
 # # Интроспекция экземпляра p1 (dunder методы)
-# # pprint(dir(p1))
+# pprint(dir(p1))
 # print(p1.__sizeof__())
 # help(p1.__sizeof__)
 #
@@ -98,9 +98,10 @@ class Point(object):
 # print(sys.getrefcount(-5))
 # print(sys.getrefcount(256))
 
+
 # Создадим функция для интроспекции
-# def func(a=5, b=8):
-#     return a + b
+def func(a=5, b=8):
+    return a + b
 
 
 # Интроспекция экземпляра func (dunder методы)
@@ -114,7 +115,6 @@ class Point(object):
 # print(type(func))
 
 # Check
-# func.name_of_function = 'first function'  # 
+func.name_of_function = 'first function'  # work
 
-
-# sum.name_of_function = 'sum function'    # 
+sum.name_of_function = 'sum function'    # error
