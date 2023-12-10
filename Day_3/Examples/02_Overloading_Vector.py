@@ -12,7 +12,7 @@ from pprint import pprint
 
 
 class Vector:
-    def __init__(self, pos):  # Какой тип данных может быть у pos? 
+    def __init__(self, pos: list | tuple):  # Какой тип данных может быть у pos?  list, tuple, str, dict, range
         self.x = pos[0]
         self.y = pos[1]
 
@@ -21,16 +21,22 @@ class Vector:
     def __add__(self, other: Vector) -> Vector:
         return Vector((self.x + other.x, self.y + other.y))
 
+    # def __radd__(self, other: Vector) -> Vector:
+    #     return Vector((self.x + other.x, self.y + other.y))
+
     # Это явный метод
     def add(self, other: Vector) -> Vector:
         # Каждый раз будет возращаться новый экземпляр. Например, как со строками: str.lower()
         return Vector((self.x + other.x, self.y + other.y))
 
-    def as_point(self):
+    def as_point(self) -> tuple:
         return self.x, self.y
 
     # Формируем удобное отображение объекта при выводе функцией print()
     def __str__(self):
+        return f"Vector(x:{self.x}, y:{self.y})"
+
+    def __repr__(self):
         return f"Vector(x:{self.x}, y:{self.y})"
 
 
@@ -58,22 +64,21 @@ v4 = v1.__add__(v2)
 print(f'{v4 = !s}')
 
 # v4 = v1 - v2  # TypeError: unsupported operand type(s) for -: 'Vector'
-#
-# # =========
-# # Проясняем
-# # =========
-# slonik = Slon()
-# something = v1 + slonik  # v1.__add__(slonik) 
 
-# some_v2 = slonik + v2   # slonik.__add__(v2)  
+# =========
+# Проясняем
+# =========
+slonik = Slon()
+something = v1 + slonik  # v1.__add__(slonik)  work
 
+# some_v2 = slonik + v2  # slonik.__add__(v2)  error
+# ВАЖНО. Если бы у Vector'a был реализован метод __radd__() то этот код отработал бы.
 
-
-# # Функция print() для получения строки для вывода вызывает методы __str__()
-# print('v3 + v3 =', v3 + v3)
-# print('Repr of v3 = ', repr(v3))
-# print(f'{v3!r}')  # __repr__()
-# print(f'{v3!s}')  # __str__()
+# Функция print() для получения строки для вывода вызывает методы __str__()
+print('v3 + v3 =', v3 + v3)
+print('Repr of v3 = ', repr(v3))
+print(f'{v3!r}')  # __repr__()
+print(f'{v3!s}')  # __str__()
 
 
 
