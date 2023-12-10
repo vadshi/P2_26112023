@@ -34,24 +34,25 @@ class Card:
         return VALUES.index(self.value) < VALUES.index(other_card.value)
 
 
-# # # Создадим несколько карт
-card1 = Card("10", "Hearts")
-card2 = Card("A", "Diamonds")
-card3 = Card("10", "Diamonds")
+if __name__ == '__main__':
+    # # # Создадим несколько карт
+    card1 = Card("10", "Hearts")
+    card2 = Card("A", "Diamonds")
+    card3 = Card("10", "Diamonds")
 
-# Выведем карты на экран в виде: 10♥ и A♦
-print(card1.to_str())
-print(card2.to_str())
-print(card3.to_str())
+    # Выведем карты на экран в виде: 10♥ и A♦
+    print(card1.to_str())
+    print(card2.to_str())
+    print(card3.to_str())
 
-# Проверим, одинаковые ли масти у карт
-if card1.equal_suit(card2):
-    print(f"У карт: {card1.to_str()} и {card2.to_str()} одинаковые масти")
-else:
-    print(f"У карт: {card1.to_str()} и {card2.to_str()} разные масти")
+    # Проверим, одинаковые ли масти у карт
+    if card1.equal_suit(card2):
+        print(f"У карт: {card1.to_str()} и {card2.to_str()} одинаковые масти")
+    else:
+        print(f"У карт: {card1.to_str()} и {card2.to_str()} разные масти")
 
-print(card1.more(card2))
-print(card1.less(card2))
-print(card1.more(card3))
-print(card1.less(card3))
+    print(card1.more(card2))
+    print(card1.less(card2))
+    print(card1.more(card3))
+    print(card1.less(card3))
 
