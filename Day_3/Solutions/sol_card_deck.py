@@ -19,7 +19,7 @@ class Card:
         return self.value + SUITS_UNI[self.suit]
 
     def __repr__(self):
-        return str(self)
+        return str(self)  # self.__str__()
 
     def equal_suit(self, other_card) -> bool:
         return self.suit == other_card.suit
