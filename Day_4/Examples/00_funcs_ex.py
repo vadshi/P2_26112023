@@ -6,6 +6,7 @@
 
 # Создаем для примера функцию
 from collections.abc import Callable
+from pprint import pprint
 
 
 # функция для примеров
@@ -18,11 +19,11 @@ def func(text: str) -> str:
 # bar = func  # Ссылка на func
 # print(type(bar), id(bar))
 # print(bar('пока'))
-
-# Можно удалить func, но bar будет вызываться
+#
+# # Можно удалить func, но bar будет вызываться
 # del func
-# print(func('textest'))  # Out -> Error
-
+# # print(func('textest'))  # Out -> Error
+#
 # print(bar('Я работаю'))
 # print(bar.__name__)
 # print(id(bar))
@@ -44,7 +45,7 @@ def func(text: str) -> str:
 #      ,'third': str.capitalize
 #      }
 #
-# print(d['first']('hello'))
+# print(d['first']('hello'))  # str.upper('hello')
 # print(d['second']('arg'))
 # print(d['third']('foo'))
 
@@ -84,25 +85,28 @@ def func(text: str) -> str:
 # ===
 # print(map(bar, ['hello', 'hi', 'привет']))
 # print(set(map(bar, ['hello', 'hi', 'привет'])))
-# # numbers = list(map(int, input("Enter: ").split()))
-# # print(numbers)
-# # strings = tuple(map(bar, input("Enter: ").split(maxsplit=2)))
-# # print(strings)
+# numbers = list(map(int, input("Enter: ").split()))
+# print(numbers)
+# # the same result
+# numbers = [int(value) for value in input("Enter: ").split()]
+# print(numbers)
+# strings = tuple(map(bar, input("Enter: ").split(maxsplit=2)))
+# print(strings)
 #
-# # ## Здесь действует распаковка
+# ## Здесь действует распаковка
 # a = map(float, input("Enter: ").split())
 # print(f'{a = }')
 # print(next(a))  # a.__next__()
 # print(next(a))  # a.__next__()
 # print(next(a, "I'm empty."))
-#
+
 # a, b = map(float, input("Enter: ").split())
 # print(f'{a = }, {b = }')
 
 # Здесь отработает
 # print(*map(int, '4 8'.split()))
-
-# print(list(map(len, ['hello', 'hi', 'привет'])))
+#
+# print(sum(map(len, ['hello', 'hi', 'привет'])))
 
 # ======
 # filter
@@ -114,6 +118,7 @@ def func(text: str) -> str:
 # # Включаем элемент в итоговый список, если результат работы
 # # функции condition True
 # print(list(filter(condition, ['hello', 'hi', 'привет'])))
+#
 # # Если первый аргумент None, то в итоговую выдачу попадут только truthy values
 # print(tuple(filter(None, [True, 5, 0, '', 8.2, 'hello', False])))
 
@@ -140,11 +145,16 @@ def func(text: str) -> str:
 # b = list(range(11, 17))
 # c = list(range(101, 120))
 # d = 'hello python'
-# print(list(zip(a, b, c, d)))
+# pprint(list(zip(a, b, c, d)))
 
 # Пример на понимание работы словаря
+# for zip_item in zip('pythonpy', range(8)):
+#     print(zip_item)
+# print('=' * 40)
+# d1 = dict((('a', 2), ('b', 9)))
+# print(f'{d1 = }')
 # d = dict(zip('pythonpy', range(8)))
-# print(len(d))  # 8(3+) vs 6(2)
+# print(len(d))  # Вспомнить и проверить
 # print(d)
 
 # =========
@@ -155,17 +165,19 @@ def func(text: str) -> str:
 # этой функции в окружающем коде и не являющиеся её параметрами.
 # Говоря другим языком, замыкание — функция, которая ссылается на
 # свободные переменные в своей области видимости.
-# def multiply(num1):
+
+# def multiply(num1: int):
 #     # локальная переменная функция,
 #     # которая удалится, после вызова функции multiply
 #     var = 10
 #     var += num1
+#
 #     # Вложенная функция
-#     def inner(num2):
+#     def inner(num2: int):
 #         return num1 * num2
 #     return inner
-#
-#
+
+
 # mult_by_9 = multiply(9)
 # mult_by_10 = multiply(10)
 #
@@ -194,32 +206,32 @@ def func(text: str) -> str:
 # import inspect as ins
 # print(ins.getsource(mult_by_9.__code__))
 
-#==================
+# ==================
 # Области видимости
 # Local -> Enclosed -> Global -> Builtin (LEGB)
 # Вложенные функции
-# a = 10
+# a = 5
 # def main(text: str):
 #     # print(a)
 #     a = 5
 #     def inner_func(text_1: str) -> str:
 #         # Доступ к переменной a в функции main
-#         nonlocal a
+#         # nonlocal a
 #         # Доступ к глобальной переменной a
 #         # global a
 #         print(a)
 #         print(locals())  # Словарь локальных переменных
-#         a += 1  # a = a + 1
+#         # a += 1  # a = a + 1
 #         return text_1.lower() + '...' + f'{a}'
 #     # Словарь локальных переменных
 # #     print(locals())
 #     return inner_func(text)
-
+#
 # print(main('Привет, Всем '))
 # print(f'{a = }')
-# #
-# print(inner_func('Может работает?')) # Error
-# print(main.inner_func) # Error
+#
+# # print(inner_func('Может работает?')) # Error
+# # print(main.inner_func) # Error
 
 
 # Результат работы функции main это идентификатор на функцию,
@@ -243,8 +255,8 @@ def func(text: str) -> str:
 # print(some_name('привет'))
 #
 # # Вызываем сразу две функции подряд
-# print(main_imp(10)('Test'))
-# print(main_imp(3)('Student'))
+# print(main_imp(10)('Test'))   # foo("Test")
+# print(main_imp(3)('Student'))  # bar('Student')
 
 # ## Используем область видимости Enclosed
 # def main_imp_2(size: int, text='default'):
@@ -273,10 +285,10 @@ def func(text: str) -> str:
 # print(add(2, 3), type(add))
 # print(add)
 #
-# # # # ### Вызов лямбды с аргументами
+# # # # # ### Вызов лямбды с аргументами
 # print((lambda x, y: x + y)(10, 16))
-
-# Можно, но не нужно
+#
+# # Можно, но не нужно
 # print((lambda *args, **kwargs: (args, kwargs))(4, 5, b='hello', c='hi'))
 # print((lambda *args, **kwargs: (args, kwargs))(41, 51))
 #
@@ -298,22 +310,23 @@ def func(text: str) -> str:
 # print(mul_10(20))
 
 # lambda в качестве значения аргумента key
-def new_order(x):
-    return x[1]
-
-
-list_of_tuples = [(1, 'd'), (2, 'b'), (4, 'a'), (3, 'c')]
+# def new_order(x):
+#     return x[1]
+#
+#
+# list_of_tuples = [(1, 'd'), (2, 'b'), (4, 'a'), (3, 'c')]
 
 # sorted принимает как аргумент последовательность и всегда возвращает список
 # print(sorted(list_of_tuples))
-#
-# # ## Сортировка по второму значению кортежей
+
+# ## Сортировка по второму значению кортежей
 # print(sorted(list_of_tuples, key=lambda x: x[1]))
 # print(sorted(list_of_tuples, key=new_order))
 # Out: [(4, 'a'), (2, 'b'), (3, 'c'), (1, 'd')]
 
 # # 0 1 1 4 4 9 9 16 16 25 25 - ключ(критерий) сортировки
 # print(sorted(range(-5, 6), key=lambda x: x * x))
+#
 # print(sorted(range(5, -6, -1), key=lambda x: x * x))
 #
 # print(sorted('hello', key=lambda x: ord(x) % 10))
@@ -321,7 +334,7 @@ list_of_tuples = [(1, 'd'), (2, 'b'), (4, 'a'), (3, 'c')]
 
 # In: hel545 py5n st495 hel55 hel54 py5n
 # result = set(map(lambda x: x.replace('5', '*').replace('4', '*'), input('Enter: ').split()))
-# print(len(result))  # Кол-во элементов?
+# print(len(result))  # Кол-во элементов? Вспомнить всё и проверить
 # print(result)
 
 # ===================
@@ -339,7 +352,8 @@ list_of_tuples = [(1, 'd'), (2, 'b'), (4, 'a'), (3, 'c')]
 #
 # print(min(range(20), key=lambda x: x % 3))  # 0
 # print(max(range(20), key=lambda x: x % 3))  # 2
-
-
+#
+# # КВ
+# print(min(range(13, 20), key=lambda x: x % 3))  #
 
 
