@@ -62,31 +62,32 @@ def beats(x, y):
 b_rock, w_paper, scissors = BrownRock(), WhitePaper(), Scissors()
 lst = [b_rock, w_paper, scissors, Rock(), Paper()]
 
-# for _ in range(10):
-#     first = random.choice(lst)
-#     second = random.choice(lst)
-#     print(f'{first} vs {second}. {beats(first, second)} win')
+for _ in range(10):
+    first = random.choice(lst)
+    second = random.choice(lst)
+    print(f'{first} vs {second}. {beats(first, second)} win')
 
 
 # beats(w_paper, 3)  # TypeError: Unknown second thing
 
-# print(type(w_paper) == Paper)       # False
-# print(isinstance(w_paper, Paper))   # True
-#
-# # Пробегаемся по всем классам предкам
-# print(isinstance(b_rock, Thing))
-# print(isinstance(True, int))
-#
-# # Показать иерархию классов
-# print(b_rock.__class__.__mro__)
-# print(True.__class__.__mro__)
-#
-# # проверяем, что Thing предок класса Rock
-# print(issubclass(BrownRock, Thing))  # True
-# print(issubclass(Rock, object))      # True
-# print(issubclass(Rock, Scissors))    # False
-#
-# # аргументы - только классы, поэтому ошибка
+print(type(w_paper) is Paper)       # False
+print(type(w_paper) is WhitePaper)  # True
+print(isinstance(w_paper, Paper))   # True
+
+# Пробегаемся по всем классам предкам
+print(isinstance(b_rock, Thing))
+print(isinstance(True, int))
+
+# Показать иерархию классов
+print(b_rock.__class__.__mro__)
+print(True.__class__.__mro__)
+
+# проверяем, что Thing предок класса Rock
+print(issubclass(BrownRock, Thing))  # True
+print(issubclass(Rock, object))      # True
+print(issubclass(Rock, Scissors))    # False
+
+# аргументы - только классы, поэтому ошибка
 # print(issubclass(b_rock, Thing))  # Error
 
 

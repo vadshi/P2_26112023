@@ -52,17 +52,17 @@ if __name__ == '__main__':
     #     klass().method()
     #     print('=' * 40)
 
-    print('Provider...')
-    p = Provider()
-    p.delegate()  # двойная пробежка
+    # print('Provider...')
+    # p = Provider()
+    # p.delegate()  # двойная пробежка
     # i = Inheritor()
     # i.first()  # AssertionError:
-    # print('done')
+    # # # print('done')
     r = Replacer()
     r.first()
     # r.delegate()
     # e = Extender()
     # e.first()  # AssertionError:
-
-    # MRO - method resolution order
+    #
+    # # MRO - method resolution order
     print(r.__class__.__mro__)
