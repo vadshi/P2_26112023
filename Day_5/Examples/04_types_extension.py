@@ -10,6 +10,7 @@ class MyDict(dict):
         return "Вызвали new_method()"
 
     # Добавляем дополнительный функционал к существующему методу
+    # d[key] = value
     def __setitem__(self, key, value):
         print(f'Setting {key!r} to {value!s}')
         key = str(key).upper()
@@ -28,12 +29,13 @@ class MyDict(dict):
 # print(m_dict.items())
 #
 # # Данная операция вызывает метод __setitem__.
-# # Идем в 13 строку
+# # Идем в 14 строку
 # m_dict["new_key"] = "new_value"
 # m_dict[4] = 12
 # print(m_dict)
 #
 # print(m_dict[89])
+# print(m_dict["NEW_KEY"])
 # print(m_dict.keys())
 # print(m_dict.new_method())
 
@@ -61,10 +63,10 @@ class MyDict(dict):
 # print(x[16])
 #
 # # методы, унаследованные от суперкласса list
-# x.append('spam')
-# print(x)
-# x.reverse()
-# print(x)
+# # x.append('spam')
+# # print(x)
+# # x.reverse()
+# # print(x)
 # x[4] = 999  # __setitem__(4) это пятый элемент в list
 # print(x)  #
 
