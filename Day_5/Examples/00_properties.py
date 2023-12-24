@@ -1,40 +1,40 @@
-class StudentA:
-    """ Test class for learning """
-    def __init__(self, name):
-        self._name = name
-
-    def get_name(self):
-        print('From get_name()')
-        return self._name
-    
-    def set_name(self, value):
-        print('From set_name()')
-        self._name = value
-
-    def del_name(self):
-        print('From del_name()')
-        self._name = ''
-
-    # V1
-    # Для чтения(getter) -> get_name, для изменения(setter) -> set_name, для удаления(deleter) -> del_name
-    # name = property(fget=get_name, fset=set_name, fdel=del_name)
-    # For example: print(student.name); student.name = 12; del student.name
-    
-    # V2
-    # name = property()
-    # # print(type(name))
-    # # print(dir(name))
-    # name = name.getter(get_name)
-    # name = name.setter(set_name)
-    # name = name.deleter(del_name)
-
-    # V3
-    # Первый аргумент - это getter(считать значение)
-    # name = property(get_name)
-    # name = name.setter(set_name)
-    # name = name.deleter(del_name)
-
-
+# class StudentA:
+#     """ Test class for learning """
+#     def __init__(self, name):
+#         self._name = name
+#
+#     def get_name(self):
+#         print('From get_name()')
+#         return self._name
+#
+#     def set_name(self, value):
+#         print('From set_name()')
+#         self._name = value
+#
+#     def del_name(self):
+#         print('From del_name()')
+#         self._name = ''
+#
+#     # V1
+#     # Для чтения(getter) -> get_name, для изменения(setter) -> set_name, для удаления(deleter) -> del_name
+#     # name = property(fget=get_name, fset=set_name, fdel=del_name)
+#     # For example: print(student.name); student.name = 12; del student.name
+#
+#     # V2
+#     # name = property()
+#     # print(type(name))
+#     # print(dir(name))
+#     # name = name.getter(get_name)
+#     # name = name.setter(set_name)
+#     # name = name.deleter(del_name)
+#
+#     # V3
+#     # Первый аргумент - это getter(считать значение)
+#     # name = property(get_name)
+#     # name = name.setter(set_name)
+#     # name = name.deleter(del_name)
+#
+#
 # student = StudentA('first')
 # print(student.__dict__)
 # print(student.name)        # fget=get_name
@@ -96,4 +96,4 @@ print(s_b.__dict__)
 print(f'{s_b.name!r}')
 
 # В setter есть проверка данных
-s_b.name = 'Ник'  # error Exception: Too small
+# s_b.name = 'Ник'  # error Exception: Too small
